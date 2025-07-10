@@ -13,7 +13,6 @@ from core.plantUML_renderer import extract_plantuml_code, create_plantuml_image
 from llm_clients.gpt4 import GPT4Client
 from datetime import datetime
 
-
 # Load API key from .env file
 load_dotenv()
 
@@ -111,6 +110,7 @@ def run_all_tests(prompt_filter=None, model_filter=None, temperature_override=No
 
                 print(f"✅ Saved to: {run_dir}")
                 
+                # Create PlantUML diagram
                 uml_code = extract_plantuml_code(result["text"])
                 if uml_code:
                     image_path = run_dir / f"{prompt_id}_{model_name}_diagram.png"
