@@ -2,6 +2,17 @@
 
 import argparse
 from core.test_runner import run_all_tests
+from llm_clients.gpt4 import GPT4Client
+
+# Settings
+models = [
+    {
+        "name": "gpt-4o",
+        "client": GPT4Client(),
+        "temperature": 0.3,
+        "repeat": 2
+    }
+]
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run LLM prompt tests.")
@@ -16,8 +27,9 @@ if __name__ == "__main__":
     args = parse_args()
 
     run_all_tests(
-        prompt_filter=args.prompt_id,
-        model_filter=args.model,
-        temperature_override=args.temperature,
-        repeat_override=args.repeat
-    )
+    models=models,  # ✅ pass models explicitly
+    prompt_filter=args.prompt_id,
+    model_filter=args.model,
+    temperature_override=args.temperature,
+    repeat_override=args.repeat
+)

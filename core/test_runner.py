@@ -3,34 +3,35 @@ from dotenv import load_dotenv
 from core.prompt_loader import load_prompts
 from core.file_manager import (
     get_prompt_hash,
-    get_timestamp,
     build_run_directory,
-    ensure_directory,
     save_text,
     save_json
 )
 from core.plantUML_renderer import extract_plantuml_code, create_plantuml_image
-from llm_clients.gpt4 import GPT4Client
 from datetime import datetime
 
 # Load API key from .env file
 load_dotenv()
 
-# Settings
-models = [
-    {
-        "name": "gpt-4o",
-        "client": GPT4Client(),
-        "temperature": 0.3,
-        "repeat": 1
-    }
-]
 
 # Directory paths
 PROMPT_DIR = Path("prompts")
 OUTPUT_BASE = Path("test_runs")
 
-def run_all_tests(prompt_filter=None, model_filter=None, temperature_override=None, repeat_override=None):
+def run_all_tests(models, prompt_filter=None, model_filter=None, temperature_override=None, repeat_override=None):
+
+    
+    for model_config in models:
+        model_name = model_config["name"]
+
+        if model_filter and model_name != model_filter:
+            continue
+
+        client = model_config["client"]
+        temperature = temperature_override if temperature_override is not None else model_config["temperature"]
+        repeat = repeat_override if repeat_override is not None else model_config["repeat"]
+
+        
     prompts = load_prompts(PROMPT_DIR)
 
     for prompt in prompts:
