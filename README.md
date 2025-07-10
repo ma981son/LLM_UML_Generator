@@ -57,6 +57,36 @@ LLM_UML_Generator/
 
 ## Example CLI Command
 
+CLI Usage
+Use main.py to run prompt tests with flexible options:
+
+### Run all prompts with all models
 ```bash
-python cli.py --config config/test_config.yaml
+python main.py
+```
+
+### Run a specific prompt by ID
+```bash
+python main.py --prompt_id "enter_prompt_id"
+```
+
+### Run only a specific model
+```bash
+python main.py --model gpt-4o
+```
+
+### Set temperature manually
+```bash
+python main.py --temperature 0.7
+```
+
+### Repeat same test multiple times
+```bash
+python main.py --repeat 5
+```
+
+### Combine all filters
+```bash
+python main.py --prompt_id "enter_prompt_id" --model gpt-4o --temperature 0.5 --repeat 3
+```
 

@@ -18,19 +18,17 @@ class GPT4Client(LLMClient):
 
         try:
             response = self.client.chat.completions.create(
-                model=parameters.get("model", "gpt-4"),
+                model=parameters["model"],
                 messages=[{"role": "user", "content": prompt}],
-                temperature=parameters.get("temperature", 0.7),
-                max_tokens=parameters.get("max_tokens", 1000),
-                top_p=parameters.get("top_p", 1.0)
+                temperature=parameters.get("temperature", 0.3),
+                max_tokens=parameters.get("max_tokens", 1000)
             )
 
-            latency = time.time() - start_time
+            duration = time.time() - start_time
 
             return {
                 "text": response.choices[0].message.content,
-                "latency": latency,
-                "status": "success",
+                "latency": duration,
                 "raw_response": response
             }
 
