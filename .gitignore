@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+.env.*
+
+# VS Code settings
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test results
+test_runs/
+
+# PlantUML output (optional)
+*.svg
+*.png
+*.puml
