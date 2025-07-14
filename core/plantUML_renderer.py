@@ -4,7 +4,7 @@ from tempfile import NamedTemporaryFile
 from plantuml import PlantUML
 
 # Public PlantUML rendering server
-plantuml = PlantUML(url="http://www.plantuml.com/plantuml/img/")
+plantuml = PlantUML(url="http://localhost:8080/img/")
 
 def extract_plantuml_code(text: str) -> str:
     """Extract PlantUML code from a text block."""
