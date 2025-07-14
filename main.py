@@ -9,7 +9,7 @@ models = [
     {
         "name": "gpt-4o",
         "client": GPT4Client(),
-        "temperature": 0.3,
+        "temperature": 0.1,
         "max_tokens": 2000,
         "repeat": 3
     }

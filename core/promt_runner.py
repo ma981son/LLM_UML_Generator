@@ -5,7 +5,8 @@ from core.file_manager import (
     get_prompt_hash,
     build_run_directory,
     save_text,
-    save_json
+    save_json,
+    save_plantuml
 )
 from core.plantUML_renderer import extract_plantuml_code, create_plantuml_image
 from datetime import datetime
@@ -53,7 +54,7 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
         prompt_folder = OUTPUT_BASE / prompt_name
         prompt_folder.mkdir(parents=True, exist_ok=True)
         
-        prompt_txt_path = prompt_folder / "prompt.txt"
+        prompt_txt_path = prompt_folder / f"{prompt_name}_{prompt_hash}.txt"
         if not prompt_txt_path.exists():
             save_text(prompt_txt_path, prompt_text)
             
@@ -101,16 +102,18 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
                 total_tokens = usage.total_tokens
                 
                 # Save response text
-                save_text(run_dir / f"{prompt_name}_{model_name}_RESPONSE.txt", result["text"])
+                save_text(run_dir / f"{prompt_name}_{prompt_hash}_RESPONSE.txt", result["text"])
                 
-                # Create PlantUML diagram
+                # Create .plum file and PlantUML diagram
                 uml_code = extract_plantuml_code(result["text"])
                 if uml_code:
-                    image_path = run_dir / f"{prompt_name}_{model_name}_diagram.png"
+                    plum_path = run_dir / f"{prompt_name}_{prompt_hash}_PLUM.puml"
+                    save_plantuml(plum_path, uml_code)
+                    image_path = run_dir / f"{prompt_name}_{prompt_hash}_DIAGRAMM.png"
                     create_plantuml_image(uml_code, image_path)
-
+                
                 # Save metadata json
-                save_json(run_dir / f"{prompt_name}_{model_name}_METADATA.json", {
+                save_json(run_dir / f"{prompt_name}_{prompt_hash}_METADATA.json", {
                     "prompt_name": prompt_name,
                     "model": model_name,
                     "model_version": model_version,

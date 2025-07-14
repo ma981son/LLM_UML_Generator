@@ -49,3 +49,14 @@ def save_text(file_path: Path, content: str):
 def save_json(file_path: Path, data: dict):
     """Save a dictionary as JSON to a file."""
     file_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    
+def save_plantuml(file_path: Path, plantuml_code: str):
+    """Save PlantUML code to a .puml file."""
+    code = plantuml_code.strip()
+    
+    if "@startuml" in code and "@enduml" in code:
+        content = code
+    else:
+        content = f"@startuml\n{code}\n@enduml"
+    
+    file_path.write_text(content, encoding="utf-8")
