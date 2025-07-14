@@ -10,7 +10,7 @@ models = [
         "name": "gpt-4o",
         "client": GPT4Client(),
         "temperature": 0.3,
-        "repeat": 2
+        "repeat": 3
     }
 ]
 
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     args = parse_args()
 
     run_all_tests(
-    models=models,  # ✅ pass models explicitly
+    models=models,
     prompt_filter=args.prompt_id,
     model_filter=args.model,
     temperature_override=args.temperature,

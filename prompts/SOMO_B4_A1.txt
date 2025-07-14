@@ -1,0 +1,4 @@
+Entwickeln Sie ein UML-Klassendiagramm und geben sie dieses in PLANT UML Code aus, in dem Personen und Ihre
+Verwandtschaftsbeziehungen „verheiratet mit“ und „Nachkomme von“ modelliert werden.
+Die Beziehung „Nachkomme von“ soll dabei die Beziehung zwischen Vater, Mutter und
+Kind beschreiben. Jede Person soll einen Namen besitzen.
