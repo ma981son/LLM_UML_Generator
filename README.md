@@ -45,6 +45,34 @@ LLM_UML_Generator/
    OPENAI_API_KEY=your_key_here
    ```
 
+### Launch the PlantUML server
+
+Diagram generation relies on a running PlantUML server. Start it using Docker:
+
+```bash
+docker run -d -p 8080:8080 plantuml/plantuml-server:jetty
+```
+
+Leave this container active while running the CLI so diagrams can be generated.
+
+
+## Configuration
+
+The default model parameters are stored in `config/test_config.yaml`. Edit this
+file to change the temperature, maximum token count or repetition settings, or
+to add new models. A minimal example is shown below:
+
+```yaml
+models:
+  - name: gpt-4o
+    temperature: 0.1
+    max_tokens: 2000
+    repeat: 1
+```
+
+Place additional prompt files in the `prompts` directory to have them included
+automatically when running the CLI.
+
 ## Usage
 
 Run the CLI to execute all prompts with the default model configuration:
