@@ -17,7 +17,7 @@ load_dotenv()
 PROMPT_DIR = Path("prompts")
 OUTPUT_BASE = Path("test_runs")
 
-def run_prompts(models, prompt_filter=None, model_filter=None, temperature_override=None, repeat_override=None):
+def run_prompts(models, prompt_filter=None, model_filter=None, temperature_override=None, max_tokens_override=None, repeat_override=None):
     """Run all prompts against all configured models.
 
     Parameters
@@ -25,12 +25,15 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
     models : list[dict]
         Configuration for each model including name, client instance,
         default temperature, and repeat count.
+        default temperature, repeat count and max tokens.
     prompt_filter : str | None
         If provided, only the prompt with this name will be executed.
     model_filter : str | None
         If provided, only the model with this name will be executed.
     temperature_override : float | None
         Override the model's default temperature.
+    max_tokens_override : int | None
+        Override the model's default max token value.
     repeat_override : int | None
         Override how many times each test should be repeated.
     """
@@ -63,6 +66,7 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
             
             client = model_config["client"]
             temperature = temperature_override if temperature_override is not None else model_config["temperature"]
+            max_tokens = max_tokens_override if max_tokens_override is not None else model_config.get("max_tokens", 1000)
             repeat = repeat_override if repeat_override is not None else model_config["repeat"]
             
             for i in range(1, repeat + 1):
@@ -71,7 +75,7 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
                 parameters = {
                     "model": model_name,
                     "temperature": temperature,
-                    "max_tokens": 1000
+                    "max_tokens": max_tokens,
                 }
                 
                 # Build the run directory for this prompt,model and temperature

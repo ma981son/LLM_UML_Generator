@@ -53,13 +53,27 @@ Run the CLI to execute all prompts with the default model configuration:
 python main.py
 ```
 
+The models used when no parameters are supplied are defined in `main.py`:
+
+```python
+models = [
+    {
+        "name": "gpt-4o",
+        "client": GPT4Client(),
+        "temperature": 0.3,
+        "max_tokens": 1000,
+        "repeat": 3
+    }
+]
+```
+
 Useful options:
 
 ```bash
-python main.py                             # run all prompts
 python main.py --prompt_name SOMO_B4_A2    # run only a single prompt
 python main.py --model gpt-4o              # select a specific model
 python main.py --temperature 0.7           # override sampling temperature
+python main.py --max_tokens 500            # override token limit
 python main.py --repeat 3                  # repeat the test multiple times
 ```
 
