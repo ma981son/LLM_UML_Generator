@@ -1,92 +1,69 @@
 # LLM_UML_Generator
 
-**LLM_UML_Generator** is a Python-based framework for testing and comparing Large Language Models (LLMs) in their ability to generate UML class diagrams from natural language requirements.
+LLM_UML_Generator is a lightweight framework for benchmarking large language models on the task of generating UML class diagrams from natural language descriptions.
 
-This tool is developed as part of a Bachelor's thesis to systematically evaluate LLMs like GPT-4, Claude 3, Google Gemini, and DeepSeek.
-
----
+The project started as part of a Bachelor's thesis and provides a minimal set of tools for loading prompts, sending them to different LLMs and storing the resulting diagrams and metadata.
 
 ## Features
 
-- Prompt-based UML class diagram generation using various LLMs
-- Modular architecture with unified API access for GPT-4, Claude, Gemini, etc.
-- Fully automated test runs with structured output per prompt and model
-- Visual UML diagram generation using PlantUML (SVG, PNG)
-- Reproducible testing via configuration files and CLI
-- Organized storage of all responses, diagrams, and metadata
+- Modular client interface (currently GPT‑4) for easy extension to other APIs
+- Command line interface for running prompts with configurable parameters
+- Automatic storage of responses, metadata and PlantUML diagrams
+- Simple project layout that can be adapted for custom experiments
 
----
+## Project layout
 
-## Project Structure
+```
 LLM_UML_Generator/
-├── llm_clients/ # API clients for OpenAI, Claude etc.
-├── core/ # Test logic and utilities
-├── prompts/ # Prompt input files
-├── test_runs/ # Auto-generated test results
-├── config/ # YAML configuration files
-├── cli.py # CLI entry point for running tests
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+├── core/         # Test logic and utilities
+├── llm_clients/  # API client implementations
+├── prompts/      # Input prompt files
+├── test_runs/    # Generated results (created at runtime)
+├── main.py       # CLI entry point
+├── requirements.txt
+└── README.md
+```
 
----
+## Installation
 
-## Getting Started
+1. Clone the repository
+   ```bash
+   git clone https://github.com/ma981son/LLM_UML_Generator.git
+   cd LLM_UML_Generator
+   ```
+2. Create and activate a virtual environment
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   ```
+3. Install Python dependencies
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Provide your API keys via a `.env` file
+   ```
+   OPENAI_API_KEY=your_key_here
+   ```
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/ma981son/LLM_UML_Generator.git
-    ```
+## Usage
 
-2. Set up a virtual environment:
-    ```bash
-    python -m venv .venv
-    source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-    ```
+Run the CLI to execute all prompts with the default model configuration:
 
-3. Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. Add your API keys to a `.env` file:
-    ```env
-    OPENAI_API_KEY=your_key_here
-    ```
-
----
-
-## Example CLI Command
-
-CLI Usage
-Use main.py to run prompt tests with flexible options:
-
-### Run all prompts with all models
 ```bash
 python main.py
 ```
 
-### Run a specific prompt by ID
+Useful options:
+
 ```bash
-python main.py --prompt_id "enter_prompt_id"
+python main.py --prompt_id SOMO_B4_A2      # run only a single prompt
+python main.py --model gpt-4o              # select a specific model
+python main.py --temperature 0.7           # override sampling temperature
+python main.py --repeat 3                  # repeat the test multiple times
 ```
 
-### Run only a specific model
-```bash
-python main.py --model gpt-4o
-```
+Generated files are placed under `test_runs/<prompt_id>/<model>/<temp>/run_*` including the raw LLM response, metadata and a PlantUML diagram if one could be extracted.
 
-### Set temperature manually
-```bash
-python main.py --temperature 0.7
-```
+---
 
-### Repeat same test multiple times
-```bash
-python main.py --repeat 5
-```
-
-### Combine all filters
-```bash
-python main.py --prompt_id "enter_prompt_id" --model gpt-4o --temperature 0.5 --repeat 3
-```
-
+This repository contains only a minimal example setup. Extend the prompt collection, add more LLM clients or adjust the testing logic to suit your own evaluation requirements.
