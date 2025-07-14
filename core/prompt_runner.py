@@ -107,9 +107,9 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
                 # Create .plum file and PlantUML diagram
                 uml_code = extract_plantuml_code(result["text"])
                 if uml_code:
-                    plum_path = run_dir / f"{prompt_name}_{prompt_hash}_PLUM.puml"
+                    plum_path = run_dir / f"{prompt_name}_{prompt_hash}_PUML.puml"
                     save_plantuml(plum_path, uml_code)
-                    image_path = run_dir / f"{prompt_name}_{prompt_hash}_DIAGRAMM.png"
+                    image_path = run_dir / f"{prompt_name}_{prompt_hash}_DIAGRAM.png"
                     create_plantuml_image(uml_code, image_path)
                 
                 # Save metadata json

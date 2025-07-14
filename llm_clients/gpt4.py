@@ -6,7 +6,6 @@ from llm_clients.base_client import LLMClient
 
 # Load API key from .env file
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class GPT4Client(LLMClient):
     
@@ -34,7 +33,7 @@ class GPT4Client(LLMClient):
 
         except Exception as e:
             return {
-                "text": str(e),
+                "text": f"ERROR: {str(e)}",
                 "latency": None,
                 "status": "error",
                 "raw_response": None

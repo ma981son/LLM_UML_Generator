@@ -3,7 +3,7 @@
 import argparse
 from pathlib import Path
 import yaml
-from core.promt_runner import run_prompts
+from core.prompt_runner import run_prompts
 from llm_clients.gpt4 import GPT4Client
 
 # Default config path
