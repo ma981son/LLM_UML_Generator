@@ -56,13 +56,13 @@ python main.py
 Useful options:
 
 ```bash
-python main.py --prompt_id SOMO_B4_A2      # run only a single prompt
+python main.py --prompt_name SOMO_B4_A2    # run only a single prompt
 python main.py --model gpt-4o              # select a specific model
 python main.py --temperature 0.7           # override sampling temperature
 python main.py --repeat 3                  # repeat the test multiple times
 ```
 
-Generated files are placed under `test_runs/<prompt_id>/<model>/<temp>/run_*` including the raw LLM response, metadata and a PlantUML diagram if one could be extracted.
+Generated files are placed under `test_runs/<prompt_name>/<model>/<temp>/run_*` including the raw LLM response, metadata and a PlantUML diagram if one could be extracted.
 
 ---
 

@@ -12,9 +12,9 @@ def get_timestamp() -> str:
     return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 
-def build_run_directory(base_dir: Path, prompt_id: str, model_name: str, temperature: float) -> Path:
+def build_run_directory(base_dir: Path, prompt_name: str, model_name: str, temperature: float) -> Path:
     temp_folder = f"temp_{str(temperature).replace('.', '_')}"
-    model_dir = base_dir / prompt_id / model_name / temp_folder
+    model_dir = base_dir / prompt_name / model_name / temp_folder
     model_dir.mkdir(parents=True, exist_ok=True)
 
     # Find next available run number
