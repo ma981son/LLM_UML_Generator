@@ -8,4 +8,4 @@ Schriftgröße und Schriftfarbe. Eine Formatierung kann für mehrere Abschnitte
 wiederverwendet werden. Ein Abschnitt kann mehrere Grafikdokumente beinhalten. Ein
 Grafikdokument kann in mehreren Abschnitten eingebunden werden, besitzt eine Auflösung
 und kann durch die Textverarbeitung gedreht werden.
-Erstellen Sie ein UML-Klassendiagramm für das System und geben sie dieses in PLANT UML Code aus.
+Erstellen Sie ein UML-Klassendiagramm für das System und geben sie dieses in PlantUML Code aus.
