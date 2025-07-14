@@ -1,7 +1,7 @@
 # main.py
 
 import argparse
-from core.test_runner import run_prompts
+from core.promt_runner import run_prompts
 from llm_clients.gpt4 import GPT4Client
 
 # Settings

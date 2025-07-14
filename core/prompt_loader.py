@@ -1,6 +1,7 @@
 from pathlib import Path
 
 def load_prompts(prompt_dir: Path) -> list[dict]:
+    """Load prompts from a directory."""
 
     prompt_data = []
 

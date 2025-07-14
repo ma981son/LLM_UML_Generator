@@ -56,6 +56,7 @@ python main.py
 Useful options:
 
 ```bash
+python main.py                             # run all prompts
 python main.py --prompt_name SOMO_B4_A2    # run only a single prompt
 python main.py --model gpt-4o              # select a specific model
 python main.py --temperature 0.7           # override sampling temperature

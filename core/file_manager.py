@@ -13,24 +13,39 @@ def get_timestamp() -> str:
 
 
 def build_run_directory(base_dir: Path, prompt_name: str, model_name: str, temperature: float) -> Path:
+    """Create a directory structure for storing test run results.
+    The structure is:
+    test_runs/<prompt_name>/<model_name>/<temp>/run_<number>/
+    """
+    ensure_directory(base_dir)
     temp_folder = f"temp_{str(temperature).replace('.', '_')}"
     model_dir = base_dir / prompt_name / model_name / temp_folder
     model_dir.mkdir(parents=True, exist_ok=True)
 
-    # Find next available run number
-    existing_runs = [p for p in model_dir.iterdir() if p.name.startswith("run_")]
-    next_run_number = len(existing_runs) + 1
+    # Find next available run number by checking existing run directories
+    existing_numbers = []
+    for p in model_dir.iterdir():
+        if p.is_dir() and p.name.startswith("run_"):
+            try:
+                existing_numbers.append(int(p.name.split("_")[1]))
+            except (IndexError, ValueError):
+                continue
+
+    next_run_number = (max(existing_numbers) if existing_numbers else 0) + 1
     run_dir = model_dir / f"run_{next_run_number:02d}"
     run_dir.mkdir()
     return run_dir
 
 def ensure_directory(path: Path) -> None:
+     """Ensure that a directory exists, creating it if necessary."""
      if not path.exists():
         path.mkdir(parents=True, exist_ok=True)
         print(f"[📁] Created directory: {path}")
         
 def save_text(file_path: Path, content: str):
+    """Save text content to a file."""
     file_path.write_text(content, encoding="utf-8")
 
 def save_json(file_path: Path, data: dict):
+    """Save a dictionary as JSON to a file."""
     file_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
