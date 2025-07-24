@@ -7,6 +7,7 @@ from core.prompt_runner import run_prompts
 from llm_clients.gpt4 import GPT4Client
 from llm_clients.gemini import GeminiClient
 from llm_clients.deepseek import DeepSeekClient
+from llm_clients.claude3 import ClaudeClient
 
 # Default config path
 CONFIG_PATH = Path("config/test_config.yaml")
@@ -14,7 +15,7 @@ CONFIG_PATH = Path("config/test_config.yaml")
 def get_client(model_name):
     if model_name.startswith("gpt"):
         return GPT4Client()
-    #elif model_name.startswith("claude"):
+    elif model_name.startswith("claude"):
         return ClaudeClient()
     elif model_name.startswith("gemini"):
          return GeminiClient()

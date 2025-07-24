@@ -124,6 +124,16 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
                             prompt_tokens = getattr(usage_metadata, "prompt_token_count", 0)
                             completion_tokens = getattr(usage_metadata, "candidates_token_count", 0)
                             total_tokens = getattr(usage_metadata, "total_token_count", 0)
+                elif model_name.startswith("claude"):
+                    # Claude specific attributes
+                        if raw_response_obj:
+                            model_version = getattr(raw_response_obj, "model", "N/A")
+                            created_timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                            system_fingerprint = "N/A"
+                            if hasattr(raw_response_obj, "usage"):
+                                prompt_tokens = getattr(raw_response_obj.usage, "input_tokens", 0)
+                                completion_tokens = getattr(raw_response_obj.usage, "output_tokens", 0)
+                                total_tokens = prompt_tokens + completion_tokens
                 
                 # Save response text
                 save_text(run_dir / f"{prompt_name}_{prompt_hash}_RESPONSE.txt", result["text"])

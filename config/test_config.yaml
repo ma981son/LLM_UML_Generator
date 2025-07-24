@@ -7,7 +7,11 @@ models:
     temperature: 0.1
     max_tokens: 2000
     repeat: 1
-  - name: gemini-2.5-pro
+  - name: claude-opus-4-20250514
     temperature: 0.1
     max_tokens: 2000
+    repeat: 1
+  - name: gemini-2.5-pro
+    temperature: 0.1
+    max_tokens: 4000
     repeat: 1
