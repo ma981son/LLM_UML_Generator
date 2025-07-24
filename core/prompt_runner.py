@@ -102,7 +102,7 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
                 total_tokens = 0
 
                 # Logic to extract metadata based on the type of raw_response_obj
-                if model_name.startswith("gpt"):
+                if model_name.startswith("gpt") or model_name.startswith("deepseek"):
                     # GPT specific attributes
                     if raw_response_obj:
                         model_version = getattr(raw_response_obj, "model", "N/A")
@@ -135,6 +135,8 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
                     save_plantuml(plum_path, uml_code)
                     image_path = run_dir / f"{prompt_name}_{prompt_hash}_DIAGRAM.png"
                     create_plantuml_image(uml_code, image_path)
+                else:
+                    print("[⚠️] No PlantUML code found in response from {model_name}, skipping diagram generation.")
                 
                 # Save metadata json
                 save_json(run_dir / f"{prompt_name}_{prompt_hash}_METADATA.json", {

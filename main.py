@@ -6,6 +6,7 @@ import yaml
 from core.prompt_runner import run_prompts
 from llm_clients.gpt4 import GPT4Client
 from llm_clients.gemini import GeminiClient
+from llm_clients.deepseek import DeepSeekClient
 
 # Default config path
 CONFIG_PATH = Path("config/test_config.yaml")
@@ -17,6 +18,8 @@ def get_client(model_name):
         return ClaudeClient()
     elif model_name.startswith("gemini"):
          return GeminiClient()
+    elif model_name.startswith("deepseek"):
+        return DeepSeekClient()
     else:
         raise ValueError(f"No client implemented for model: {model_name}")
     
