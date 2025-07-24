@@ -5,6 +5,7 @@ from pathlib import Path
 import yaml
 from core.prompt_runner import run_prompts
 from llm_clients.gpt4 import GPT4Client
+from llm_clients.gemini import GeminiClient
 
 # Default config path
 CONFIG_PATH = Path("config/test_config.yaml")
@@ -14,8 +15,8 @@ def get_client(model_name):
         return GPT4Client()
     #elif model_name.startswith("claude"):
         return ClaudeClient()
-    # elif model_name.startswith("gemini"):
-    #     return GeminiClient()
+    elif model_name.startswith("gemini"):
+         return GeminiClient()
     else:
         raise ValueError(f"No client implemented for model: {model_name}")
     

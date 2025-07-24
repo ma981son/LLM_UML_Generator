@@ -11,6 +11,8 @@ class GPT4Client(LLMClient):
     
     def __init__(self):
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        if not self.client:
+            raise ValueError("OPENAI_API_KEY is not set in the .env file.") 
         
     def send_prompt(self, prompt: str, parameters: dict) -> dict:
         start_time = time.time()

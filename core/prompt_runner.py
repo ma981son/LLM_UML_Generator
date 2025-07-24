@@ -90,16 +90,40 @@ def run_prompts(models, prompt_filter=None, model_filter=None, temperature_overr
                 # Send the prompt to the LLM client
                 result = client.send_prompt(prompt_text, parameters)
                 
-                # Save the raw response and metadata
-                raw = result["raw_response"]
-                completion_id = raw.id
-                model_version = raw.model
-                system_fingerprint = getattr(raw, "system_fingerprint", "N/A")
-                created_timestamp = datetime.fromtimestamp(raw.created).strftime('%Y-%m-%d %H:%M:%S')
-                usage = raw.usage
-                prompt_tokens = usage.prompt_tokens
-                completion_tokens = usage.completion_tokens
-                total_tokens = usage.total_tokens
+                # Access the ID directly from the result dictionary (as added in GeminiClient)
+                completion_id = result.get("id", "N/A") 
+                raw_response_obj = result.get("raw_response") # Get the raw API response object
+
+                model_version = "N/A"
+                created_timestamp = "N/A"
+                system_fingerprint = "N/A"
+                prompt_tokens = 0
+                completion_tokens = 0
+                total_tokens = 0
+
+                # Logic to extract metadata based on the type of raw_response_obj
+                if model_name.startswith("gpt"):
+                    # GPT specific attributes
+                    if raw_response_obj:
+                        model_version = getattr(raw_response_obj, "model", "N/A")
+                        created_timestamp = datetime.fromtimestamp(getattr(raw_response_obj, "created", 0)).strftime('%Y-%m-%d %H:%M:%S') if getattr(raw_response_obj, "created", 0) else "N/A"
+                        system_fingerprint = getattr(raw_response_obj, "system_fingerprint", "N/A")
+                        if hasattr(raw_response_obj, "usage") and raw_response_obj.usage:
+                            usage = raw_response_obj.usage
+                            prompt_tokens = getattr(usage, "prompt_tokens", 0)
+                            completion_tokens = getattr(usage, "completion_tokens", 0)
+                            total_tokens = getattr(usage, "total_tokens", 0)
+                elif model_name.startswith("gemini"):
+                    # Gemini specific attributes
+                    if raw_response_obj:
+                        model_version = getattr(raw_response_obj, "model_version", "N/A")
+                        created_timestamp = getattr(raw_response_obj, "createTime", datetime.now().strftime('%Y-%m-%d %H:%M:%S')) 
+                        system_fingerprint = "N/A" 
+                        if hasattr(raw_response_obj, "usage_metadata") and raw_response_obj.usage_metadata:
+                            usage_metadata = raw_response_obj.usage_metadata
+                            prompt_tokens = getattr(usage_metadata, "prompt_token_count", 0)
+                            completion_tokens = getattr(usage_metadata, "candidates_token_count", 0)
+                            total_tokens = getattr(usage_metadata, "total_token_count", 0)
                 
                 # Save response text
                 save_text(run_dir / f"{prompt_name}_{prompt_hash}_RESPONSE.txt", result["text"])
