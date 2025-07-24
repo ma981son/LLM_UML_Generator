@@ -29,7 +29,7 @@ class ClaudeClient(LLMClient):
                 duration = time.time() - start_time
 
                 return {
-                    "text": response.content[0].text,
+                    "text": response.content[0].text, # type: ignore
                     "latency": duration,
                     "raw_response": response
                 }
