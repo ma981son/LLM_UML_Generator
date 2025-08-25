@@ -1,0 +1,9 @@
+In einem Projekt zur Digitalisierung der Produktpalette im Bereich Haushaltsreiniger soll ein Klassendiagramm entwickelt werden.
+Ausgangspunkt ist ein allgemeines Waschmittel, das Eigenschaften wie Farbe,
+Pulvergröße und bestimmte Bestandteile beschreibt und über eine Funktion zum Reinigen verfügt.
+Darüber hinaus gibt es verschiedene Arten von Waschmitteln. 
+Ein Wollwaschmittel besitzt zusätzlich eine Funktion zur Pflege von Wolle und verwendet beim Reinigen ein eigenes Verfahren.
+Ein Colorwaschmittel verfügt über eine weitere Eigenschaft, 
+die die besondere Pflege von Farben beschreibt.
+
+Erstelle auf dieser Grundlage ein UML-Klassendiagramm und gib das Ergebnis in PlantUML-Code aus. Achte dabei insbesondere darauf, für Attribute und Methoden sinnvolle Sichtbarkeiten zu wählen.

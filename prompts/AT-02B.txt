@@ -1,0 +1,5 @@
+Bitte erstelle auf folgender Grundlage ein UML-Klassendiagramm und gib das Ergebnis in PlantUML-Code aus. Achte dabei auf sinnvolle Multiplizitaeten, Navigation und Assoziationsnamen für die benötigten Assoziationen.
+Für die Modellierung von Tanzstilen soll ein Klassendiagramm erstellt werden. Ein Tanzstil besitzt Eigenschaften wie Name und Rhythmus sowie die Möglichkeit, einen Grundschritt auszuführen.
+Es gibt verschiedene konkrete Tanzstile: Salsa mit der zusaetzlichen Eigenschaft Stilrichtung sowie Bachata mit der Eigenschaft Tempo.
+Außerdem treten Taenzer mit ihrem Namen auf. Taenzer und Tanzstile stehen dabei in einer gegenseitigen Beziehung, die ausdrückt, dass ein Taenzer bestimmte Stile tanzt.
+Darüber hinaus gibt es Playlists mit einem Titel, die eine Sammlung verschiedener Tanzstile enthalten können. Eine Playlist enthaelt bestimmte Stile, aber die Stile selbst müssen nicht wissen, in welchen Playlists sie vorkommen.

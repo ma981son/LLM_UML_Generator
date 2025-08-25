@@ -1,0 +1,3 @@
+Du bist ein Experte für Softwaremodellierung.
+Es sollen Personen und Ihre Verwandtschaftsbeziehungen „verheiratet mit“ und „Nachkomme von“ modelliert werden. Die Beziehung „Nachkomme von“ soll dabei die Beziehung zwischen Vater, Mutter und Kind beschreiben. Jede Person soll einen Namen besitzen.
+Bitte erstelle auf dieser Grundlage ein UML-Klassenndiagramm und gib das Ergebnis in PlantUML-Code aus.

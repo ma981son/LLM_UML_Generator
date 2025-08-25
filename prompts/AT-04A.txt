@@ -1,0 +1,10 @@
+Du bist ein Experte für Softwaremodellierung.
+Bitte erstelle auf folgender Grundlage ein UML-Klassendiagramm und gib das Ergebnis in PlantUML-Code aus. In einer Textverarbeitungssoftware können Dokumente erstellt werden, welche hiermit modelliert werden sollen. Es gibt genau zwei Arten von Dokumenten: Textdokumente und
+Grafikdokumente. Jedes Dokument enthaelt Informationen über seinen Titel, seinen Autor, den
+Dateinamen, in dem es abgelegt ist, sowie das Datum der letzten aenderung.
+Ein Textdokument besteht aus mehreren Abschnitten. Jeder Abschnitt besitzt neben dem
+eigentlichen Text eine Formatierung. In der Formatierung wird folgendes festgelegt: Schriftart,
+Schriftgröße und Schriftfarbe. Eine Formatierung kann für mehrere Abschnitte
+wiederverwendet werden. Ein Abschnitt kann mehrere Grafikdokumente beinhalten. Ein
+Grafikdokument kann in mehreren Abschnitten eingebunden werden, besitzt eine Auflösung
+und kann durch die Textverarbeitung gedreht werden.

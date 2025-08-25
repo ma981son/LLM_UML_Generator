@@ -1,0 +1,60 @@
+Bitte lies zuerst folgendes Beispiel: 
+
+---
+
+Beispiel – UML-Modell im Kontext „Haekeln“:
+
+@startuml
+' Titel
+title Beispiel: UML-Diagramm im Kontext Haekeln
+
+' -----------------------------------------
+' Vererbung: Allgemeine Klasse "Haekelprojekt" → konkrete Unterklassen
+' -----------------------------------------
+class Haekelprojekt {
+  - name: String
+  - schwierigkeitsgrad: int
+}
+
+class Schal
+Haekelprojekt <|-- Schal
+
+' -----------------------------------------
+' Komposition: Maschen sind fester Bestandteil eines Projekts.
+class Masche {
+  - nummer: int
+}
+Haekelprojekt "1" *-- "1..*" Masche : besteht aus >
+
+' -----------------------------------------
+' Aggregation: Garn ist wiederverwendbar zwischen Projekten
+class Garn {
+  - farbe: String
+  - material: String
+}
+Haekelprojekt "*" o-- "1..*" Garn : verwendet >
+
+' -----------------------------------------
+' Assoziation: HaeklerIn ↔ Haekelprojekt
+class HaeklerIn {
+  - name: String
+}
+HaeklerIn "1" --> "*" Haekelprojekt : arbeitet an >
+
+@enduml
+
+---
+
+Kontext zur Zielaufgabe – Modellierung eines Textverarbeitungssystems:
+
+In einer Textverarbeitungssoftware können Dokumente erstellt werden, welche hiermit modelliert werden sollen. Es gibt genau zwei Arten von Dokumenten: Textdokumente und Grafikdokumente.  
+Jedes Dokument enthaelt Informationen über seinen Titel, seinen Autor, den Dateinamen, in dem es abgelegt ist, sowie das Datum der letzten aenderung.
+
+Ein Textdokument besteht aus mehreren Abschnitten.  
+Jeder Abschnitt besitzt neben dem eigentlichen Text eine Formatierung. In der Formatierung wird folgendes festgelegt: Schriftart, Schriftgröße und Schriftfarbe.  
+Eine Formatierung kann für mehrere Abschnitte wiederverwendet werden.
+
+Ein Abschnitt kann mehrere Grafikdokumente beinhalten.  
+Ein Grafikdokument kann in mehreren Abschnitten eingebunden werden, besitzt eine Auflösung und kann durch die Textverarbeitung gedreht werden.
+
+Bitte erstelle auf dieser Grundlage ein UML-Klassendiagramm und gib das Ergebnis in PlantUML-Code aus.

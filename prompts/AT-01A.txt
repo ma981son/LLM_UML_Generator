@@ -1,0 +1,19 @@
+Ein Hersteller digitalisiert seine Produktpalette im Bereich Haushaltsreiniger und möchte verschiedene Waschmittelarten Modellieren. Das Ziel ist es, Gemeinsamkeiten zu abstrahieren und Unterschiede durch Spezialisierung darzustellen.
+Fachliche Beschreibung:
+Es existiert ein allgemeines Waschmittel, das grundlegende Eigenschaften aufweist:
+- farbe: String
+- pulvergroesse: String (dieses Attribut soll nur für erbende Klassen sichtbar sein → protected)
+- bestandteil: String (dieses Attribut soll nur für keine andere Klasse sichtbar sein → private)
+Eine Methode:
+- reinigen(): void
+Zwei spezielle Waschmitteltypen sollen als Unterklassen modelliert werden:
+1. Wollwaschmittel:
+   - besitzt eine eigene Methode: wollePflegen(): void
+   - überschreibt die Methode reinigen()
+2. Colorwaschmittel:
+   - zusätzliches Attribut: colorpflege: String (dieses Attribut soll nur für erbende Klassen sichtbar sein → protected)
+Anforderungen:
+- Verwenden Sie korrekte UML-Notation (+/–/#)
+- Modellieren Sie Vererbung korrekt
+- Geben Sie Datentypen wie String oder void explizit an
+Bitte erstelle auf dieser Grundlage ein UML-Klassendiagramm und gib das Ergebnis in PlantUML-Code aus.

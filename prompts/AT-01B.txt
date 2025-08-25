@@ -1,0 +1,5 @@
+Du bist ein Experte für Softwaremodellierung.
+In einem Projekt zur Digitalisierung der Produktpalette im Bereich Haushaltsreiniger soll ein Klassendiagramm entwickelt werden. Ausgangspunkt ist ein allgemeines Waschmittel, das Eigenschaften wie Farbe, Pulvergröße und bestimmte Bestandteile beschreibt und über eine Funktion zum Reinigen verfügt.
+Die Pulvergröße ist nur bei verwandten Produkttypen von Bedeutung, während die Bestandteile ausschließlich für das jeweilige Waschmittel selbst relevant sind. Die Farbe hingegen stellt eine grundlegende Produkteigenschaft dar, die nach außen hin für alle sichtbar ist.
+Darüber hinaus gibt es verschiedene Arten von Waschmitteln. Ein Wollwaschmittel besitzt zusätzlich eine Funktion zur Pflege von Wolle und verwendet beim Reinigen ein eigenes Verfahren. Ein Colorwaschmittel verfügt über eine weitere Eigenschaft, die die besondere Pflege von Farben beschreibt und von ähnlichen Produkten übernommen werden kann.  
+Bitte erstelle auf dieser Grundlage ein UML-Klassendiagramm und gib das Ergebnis in PlantUML-Code aus.
